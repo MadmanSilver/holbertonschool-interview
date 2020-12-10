@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def canUnlockAll(boxes):
     keys = [0]
     last = 0
@@ -13,4 +14,3 @@ def canUnlockAll(boxes):
                         keys.append(key)
 
     return len(keys) == len(boxes)
-        
