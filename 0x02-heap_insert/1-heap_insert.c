@@ -10,6 +10,7 @@
 heap_t *heap_insert(heap_t **root, int value)
 {
 	heap_t *new = malloc(sizeof(heap_t));
+	heap_t *p = new;
 
 	if (new == NULL)
 		return (NULL);
@@ -27,21 +28,19 @@ heap_t *heap_insert(heap_t **root, int value)
 
 	insert(*root, new, 1);
 
-	while (new->parent->n < new->n)
+	while (p->parent->n < p->n)
 	{
-		if (new->parent->left == new)
-			swapL(new);
-		else
-			swapR(new);
+		value = p->parent->n;
+		p->parent->n = p->n;
+		p->n = value;
 
-		if (new->parent == NULL)
-		{
-			*root = new;
+		p = p->parent;
+
+		if (p->parent == NULL)
 			break;
-		}
 	}
 
-	return (new);
+	return (p);
 }
 
 /**
