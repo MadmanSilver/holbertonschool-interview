@@ -75,7 +75,8 @@ heap_t *insert(heap_t *current, heap_t *new, int level)
 
 		if (p == NULL)
 			p = insert(current->right, new, level - 1);
-		else
+
+		if (p != NULL)
 			return (p);
 
 		if (current->parent != NULL)
