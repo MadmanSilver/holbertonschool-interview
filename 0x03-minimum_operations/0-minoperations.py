@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 """ Contains the minOperations function. """
 
+
 def minOperations(n):
     """ Calculates the minimum copy all/paste operations to achieve n """
     if n < 1:
         return 0
 
     return operate(n, 1, n, 1, 1)
+
 
 def operate(n, opps, lowest, copied, total):
     """ Recursively checks every possible path """
