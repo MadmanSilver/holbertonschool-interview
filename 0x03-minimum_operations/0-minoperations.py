@@ -18,9 +18,6 @@ def operate(n, opps, lowest, copied, total):
     if total > n:
         return lowest
 
-    if n > 50 and opps > (n / 3 * 2):
-        return n
-
     lowest = operate(n, opps + 1, lowest, copied, total + copied)
 
     lowest = operate(n, opps + 2, lowest, total, total * 2)
