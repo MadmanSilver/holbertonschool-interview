@@ -7,7 +7,7 @@ def minOperations(n):
         return 0
 
     res = operate(n, 1, n, 1, 1)
-    if res != n and res > 50:
+    if res != n and n > 50:
         res -= 1
     return res
 
