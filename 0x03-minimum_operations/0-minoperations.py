@@ -4,24 +4,22 @@
 
 def minOperations(n):
     """ Calculates the minimum copy all/paste operations to achieve n """
-    if n < 1:
+    if n < 2:
         return 0
 
-    return operate(n, 1, n, 1, 1)
+    opps = 0
+    total = 1
+    coppied = 0
 
+    while total < n:
+        if n % total == 0:
+            coppied = total
+            opps += 1
 
-def operate(n, opps, lowest, copied, total):
-    """ Recursively checks every possible path """
+        total += coppied
+        opps += 1
+
     if total == n:
-        if opps < lowest:
-            return opps
-        return lowest
+        return opps
 
-    if total > n:
-        return lowest
-
-    lowest = operate(n, opps + 1, lowest, copied, total + copied)
-
-    lowest = operate(n, opps + 2, lowest, total, total * 2)
-
-    return lowest
+    return 0
