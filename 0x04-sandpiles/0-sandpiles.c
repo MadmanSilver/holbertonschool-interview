@@ -1,5 +1,10 @@
 #include "sandpiles.h"
 
+/**
+ * sandpiles_sum - adds two sandpiles together and prints the process
+ * @grid1: sandpile
+ * @grid2: sandpile to add to first sandpile
+ */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
 	int x, y;
@@ -11,6 +16,8 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 
 	while (!isStable(grid1))
 	{
+		print_grid(grid1);
+
 		for (y = 0; y < 3; y++)
 			for (x = 0; x < 3; x++)
 				grid[y][x] = 0;
@@ -19,13 +26,13 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 		{
 			for (x = 0; x < 3; x++)
 			{
-				if (x != 0 && grid1[y][x - 1] > 4)
+				if (x != 0 && grid1[y][x - 1] > 3)
 					grid[y][x]++;
-				if (x != 2 && grid1[y][x + 1] > 4)
+				if (x != 2 && grid1[y][x + 1] > 3)
 					grid[y][x]++;
-				if (y != 0 && grid1[y - 1][x] > 4)
+				if (y != 0 && grid1[y - 1][x] > 3)
 					grid[y][x]++;
-				if (y != 2 && grid1[y + 1][x] > 4)
+				if (y != 2 && grid1[y + 1][x] > 3)
 					grid[y][x]++;
 			}
 		}
@@ -39,11 +46,15 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 				grid1[y][x] += grid[y][x];
 			}
 		}
-
-		print_grid(grid1);
 	}
 }
 
+/**
+ * isStable - checks if a sandpile is stable
+ * @grid: sandpile to check
+ *
+ * Return: 1 if stable, 0 otherwise
+ */
 int isStable(int grid[3][3])
 {
 	int y, x;
