@@ -9,7 +9,15 @@
 int is_palindrome(listint_t **head)
 {
 	int len;
-	listint_t *p = *head;
+	listint_t *p;
+
+	if (head == NULL)
+		return (1);
+
+	p = *head;
+
+	if (p == NULL)
+		return (1);
 
 	for (len = 0; p != NULL; len++)
 		p = p->next;
