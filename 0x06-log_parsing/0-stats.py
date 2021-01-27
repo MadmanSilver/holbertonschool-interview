@@ -29,12 +29,14 @@ def pstuff(sig=None, frame=None):
     if codes['500'] != 0:
         print("500: {}".format(codes['500']))
 
-signal.signal(signal.SIGINT, pstuff)
-
-for line in sys.stdin:
-    line = line.split()
-    total_size += int(line[-1])
-    codes[line[-2]] += 1
-    if i % 10 == 0:
-        pstuff()
-    i += 1
+try:
+    for line in sys.stdin:
+        line = line.split()
+        total_size += int(line[-1])
+        codes[line[-2]] += 1
+        if i % 10 == 0:
+            pstuff()
+        i += 1
+finally:
+    pstuff()
+    sys.stdout.flush()
