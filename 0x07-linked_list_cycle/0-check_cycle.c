@@ -8,27 +8,22 @@
  */
 int check_cycle(listint_t *list)
 {
-	size_t i, j;
 	listint_t *p = list, *p2 = list;
 
 	if (list == NULL)
 		return (0);
 
-	for (i = 0; p != NULL; i++)
+	p2 = p2->next;
+
+	while (p2 != NULL)
 	{
-		for (j = 0; j < i; j++)
-		{
-			if (p2 == p)
-				break;
-
-			p2 = p2->next;
-		}
-
-		if (j != i)
+		if (p == p2)
 			return (1);
 
 		p = p->next;
-		p2 = list;
+		p2 = p2->next;
+		if (p2 != NULL)
+			p2 = p2->next;
 	}
 
 	return (0);

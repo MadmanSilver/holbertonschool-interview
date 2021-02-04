@@ -2,6 +2,7 @@
 """ Reads and parses logs from stdin. """
 import sys
 import signal
+import traceback
 
 i = 1
 total_size = 0
@@ -39,4 +40,3 @@ try:
         i += 1
 finally:
     pstuff()
-    sys.stdout.flush()
