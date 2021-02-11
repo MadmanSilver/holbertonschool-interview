@@ -8,21 +8,15 @@
  */
 int is_palindrome(unsigned long n)
 {
-	unsigned long int length = 1;
+	unsigned long rev = 0, tmp = n;
 
-	while (n / length != 0)
-		length *= 10;
-
-	length /= 10;
-
-	while (n % 10 == n / length)
+	while (tmp != 0)
 	{
-		if (length <= 10)
-			return (1);
-
-		n = n % length / 10;
-		length /= 100;
+		rev = tmp % 10 + rev * 10;
+		tmp /= 10;
 	}
 
+	if (rev == n)
+		return (1);
 	return (0);
 }
