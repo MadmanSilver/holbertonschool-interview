@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Contains the validUTF8 function. """
 
+
 def validUTF8(data):
     """ Checks if a given dataset is valid UTF-8 encoding. """
     conts = 0
@@ -21,7 +22,7 @@ def validUTF8(data):
             if byte >> 6 != 2:
                 return False
             conts -= 1
-    
+
     if conts > 0:
         return False
 
