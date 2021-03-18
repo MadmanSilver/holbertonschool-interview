@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 """ Program that solves the N queens problem. """
-
-
 import sys
 
 argv = sys.argv
@@ -55,4 +53,4 @@ def builder(place):
         place[1] = 0
         place[0] += 1
 
-builder([0, 0])
+builder([0, 0])\
