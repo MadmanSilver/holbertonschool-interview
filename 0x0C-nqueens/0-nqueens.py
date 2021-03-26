@@ -19,7 +19,7 @@ if N < 4:
 queens = []
 
 
-def attackable(place):
+def protected(place):
     """ Checks if a given spot is prone to attack. """
     for q in queens:
         if place[0] == q[0] or place[1] == q[1]:
@@ -29,7 +29,7 @@ def attackable(place):
     return False
 
 
-def inqueens(place):
+def hasQueen(place):
     """ Checks if a given spot is already taken. """
     for q in queens:
         if place[0] == q[0] and place[1] == q[1]:
@@ -41,7 +41,7 @@ def builder(place):
     """ Runs through every spot recursively to place queens. """
     while place[0] < N:
         while place[1] < N:
-            if not inqueens(place) and not attackable(place):
+            if not hasQueen(place) and not protected(place):
                 queens.append(place.copy())
                 if len(queens) == N:
                     print(queens)
