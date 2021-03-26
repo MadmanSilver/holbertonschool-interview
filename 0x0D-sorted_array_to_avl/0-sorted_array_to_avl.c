@@ -10,6 +10,7 @@
  */
 avl_t *sorted_array_to_avl(int *array, size_t size)
 {
+	int m;
 	avl_t *avl = malloc(sizeof(avl));
 
 	if (avl == NULL)
@@ -21,11 +22,11 @@ avl_t *sorted_array_to_avl(int *array, size_t size)
 		return (NULL);
 	}
 
-	mid = (size - 1) / 2;
-	tree->n = array[mid];
-	tree->parent = NULL;
-	tree->left = branch(array, 0, mid - 1, tree);
-	tree->right = branch(array, mid + 1, size - 1, tree);
+	m = (size - 1) / 2;
+	avl->n = array[m];
+	avl->parent = NULL;
+	avl->left = recurse(array, 0, m - 1, avl);
+	avl->right = recurse(array, m + 1, size - 1, avl);
 
 	return (avl);
 }
@@ -56,8 +57,8 @@ avl_t *recurse(int *array, int s, int e, avl_t *tree)
 
 	node->n = array[m];
 	node->parent = tree;
-	node->left = branch(array, s, m - 1, node);
-	node->right = branch(array, m + 1, e, node);
+	node->left = recurse(array, s, m - 1, node);
+	node->right = recurse(array, m + 1, e, node);
 
 	return (node);
 }
