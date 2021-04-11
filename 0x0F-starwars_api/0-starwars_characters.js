@@ -17,10 +17,10 @@ request('https://swapi-api.hbtn.io/api/films/' + process.argv[2], function (err,
   if (err) {
     return console.log(err);
   }
-  (async function () {
-    JSON.parse(body).characters.forEach(character => {
+  JSON.parse(body).characters.forEach(character => {
+    (async function () {
       const res = await asyncChars(character);
       console.log(res);
-    });
-  })();
+    })();
+  });
 });
