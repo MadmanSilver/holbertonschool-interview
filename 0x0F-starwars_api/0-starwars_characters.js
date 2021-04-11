@@ -7,8 +7,11 @@ const asyncChars = async function (url) {
     request(url, function (err, res, body) {
       if (err) {
         reject(err);
+      } else if (res.statusCode === 200) {
+        resolve(JSON.parse(body).name);
+      } else {
+        reject(err);
       }
-      resolve(JSON.parse(body).name);
     });
   });
 };
@@ -17,10 +20,11 @@ request('https://swapi-api.hbtn.io/api/films/' + process.argv[2], function (err,
   if (err) {
     return console.log(err);
   }
-  JSON.parse(body).characters.forEach(character => {
-    (async function () {
-      const res = await asyncChars(character);
+  const chars = JSON.parse(body).characters;
+  (async function () {
+    for (let i = 0; i < chars.length; i++) {
+      const res = await asyncChars(chars[i]);
       console.log(res);
-    })();
-  });
+    }
+  })();
 });
