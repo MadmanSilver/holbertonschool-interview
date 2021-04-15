@@ -25,4 +25,3 @@ def rain(walls):
             break
 
     return total
-    
