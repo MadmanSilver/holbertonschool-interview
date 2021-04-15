@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Contains rain method. """
 
+
 def rain(walls):
     """ Calculates how much water is retained. """
     total = 0
@@ -24,3 +25,4 @@ def rain(walls):
             break
 
     return total
+    
