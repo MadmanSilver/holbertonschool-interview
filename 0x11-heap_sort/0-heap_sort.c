@@ -12,6 +12,18 @@ void heap_sort(int *arr, size_t size)
 	if (size <= 1)
 		return;
 
+	if (size == 2)
+	{
+		if (arr[0] >= arr[1])
+		{
+			tmp = arr[0];
+			arr[0] = arr[1];
+			arr[1] = tmp;
+			print_array(arr, size);
+		}
+		return;
+	}
+
 	heaper(arr, size, ((size - 2) / 2) - 1);
 
 	for (i = size - 1; i > 0; i--)
