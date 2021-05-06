@@ -38,4 +38,5 @@ def count_words(subreddit, word_list, after=None, keyword=None):
         res[word] = count_words(subreddit, None, None, word)
 
     for item in sorted(res.items(), key=operator.itemgetter(1), reverse=True):
-        print('{}: {}'.format(item[0], item[1]))
+        if (item[1] != 0):
+            print('{}: {}'.format(item[0], item[1]))
