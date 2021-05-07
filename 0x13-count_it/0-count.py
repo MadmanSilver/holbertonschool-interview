@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """ Contains the count_words function. """
 import requests
 import operator
