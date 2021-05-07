@@ -12,7 +12,12 @@ def count_words(subreddit, word_list, after=None, dic=None):
     hot = requests.get('https://api.reddit.com/r/{}/hot\
 '.format(subreddit) + ('?after={}'.format(after) if after is not None else ''),
                        headers={'User-Agent': 'madmansilver'},
-                       allow_redirects=False).json()
+                       allow_redirects=False)
+                       
+    if hot.status_code != 200:
+        return
+        
+    hot = hot.json()
 
     if 'data' not in hot:
         print()
