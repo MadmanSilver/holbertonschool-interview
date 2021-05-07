@@ -3,14 +3,14 @@ import requests
 import operator
 
 
-def count_words(subreddit, word_list, after=None):
+def count_words(subreddit, word_list, after=None, dic=None):
     """ Prints a sorted count of given keywords from the titles of hot articles on a subreddit. """
     if word_list is None:
         print()
         return
 
-    if isinstance(word_list, list):
-        word_list = {key: 0 for key in word_list}
+    if dic is None:
+        dic = {key: 0 for key in word_list}
 
     hot = requests.get('https://api.reddit.com/r/{}/hot'.format(subreddit) + ('?after={}'.format(after) if after is not None else ''),
                         headers={'User-Agent': 'madmansilver'}, allow_redirects=False).json()
@@ -20,15 +20,15 @@ def count_words(subreddit, word_list, after=None):
         return
 
     for post in hot.get('data').get('children'):
-        for key in word_list.keys():
-            word_list[key] += post.get('data').get('title').lower().count(key.lower())
+        for key in word_list:
+            dic[key] += post.get('data').get('title').lower().count(key.lower())
 
     after = hot.get('data').get('after')
 
     if after is None:
-        for item in sorted(word_list.items(), key=operator.itemgetter(1), reverse=True):
+        for item in sorted(dic.items(), key=operator.itemgetter(1), reverse=True):
             if (item[1] != 0):
                 print('{}: {}'.format(item[0], item[1]))
         return
 
-    count_words(subreddit, word_list, after)
+    count_words(subreddit, word_list, after, dic)
