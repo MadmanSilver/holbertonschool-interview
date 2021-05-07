@@ -26,7 +26,7 @@ def count_words(subreddit, word_list, after=None):
     after = hot.get('data').get('after')
 
     if after is None:
-        for item in sorted(res.items(), key=operator.itemgetter(1), reverse=True):
+        for item in sorted(word_list.items(), key=operator.itemgetter(1), reverse=True):
             if (item[1] != 0):
                 print('{}: {}'.format(item[0], item[1]))
         return
