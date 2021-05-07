@@ -12,7 +12,7 @@ def count_words(subreddit, word_list, after=None):
     if isinstance(word_list, list):
         word_list = {key: 0 for key in word_list}
 
-    hot = requests.get('https://api.reddit.com/r/{}/hot'.format(subreddit) + '?after={}'.format(after) if after is not None else '',
+    hot = requests.get('https://api.reddit.com/r/{}/hot'.format(subreddit) + ('?after={}'.format(after) if after is not None else ''),
                         headers={'User-Agent': 'madmansilver'}, allow_redirects=False).json()
 
     if 'data' not in hot:
