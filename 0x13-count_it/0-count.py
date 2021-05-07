@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Contains the count_words function. """
-import operator
 import requests
 
 
@@ -27,8 +26,7 @@ def count_words(subreddit, word_list, after=None, dic=None):
     after = hot.get('data').get('after')
 
     if after is None:
-        for item in sorted(dic.items(), key=operator.itemgetter(1),
-                           reverse=True):
+        for item in sorted(dic.items(), key=lambda i: (-i[1], i[0])):
             if (item[1] != 0):
                 print('{}: {}'.format(item[0], item[1]))
         return
