@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Contains the count_words function. """
-import requests
 import operator
+import requests
 
 
 def count_words(subreddit, word_list, after=None, dic=None):
@@ -21,7 +21,8 @@ def count_words(subreddit, word_list, after=None, dic=None):
 
     for post in hot.get('data').get('children'):
         for key in word_list:
-            dic[key] += post.get('data').get('title').lower().count(key)
+            dic[key] += post.get('data').get('title').lower().split()\
+                .count(key)
 
     after = hot.get('data').get('after')
 
