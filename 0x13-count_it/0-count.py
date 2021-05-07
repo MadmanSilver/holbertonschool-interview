@@ -16,10 +16,7 @@ def count_words(subreddit, word_list, after=None):
                         headers={'User-Agent': 'madmansilver'}, allow_redirects=False).json()
 
     if 'data' not in hot:
-        for item in sorted(res.items(), key=operator.itemgetter(1), reverse=True):
-            if (item[1] != 0):
-                print('{}: {}'.format(item[0], item[1]))
-        
+        print()
         return
 
     for post in hot.get('data').get('children'):
@@ -27,4 +24,11 @@ def count_words(subreddit, word_list, after=None):
             word_list[key] += post.get('data').get('title').lower().count(key.lower())
 
     after = hot.get('data').get('after')
+
+    if after is None:
+        for item in sorted(res.items(), key=operator.itemgetter(1), reverse=True):
+            if (item[1] != 0):
+                print('{}: {}'.format(item[0], item[1]))
+        return
+
     count_words(subreddit, word_list, after)
