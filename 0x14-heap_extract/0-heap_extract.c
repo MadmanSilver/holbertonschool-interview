@@ -81,7 +81,8 @@ heap_t *get_last(heap_t *node, int height, int node_height)
 {
 	heap_t *tmp;
 
-	if (node_height >= height - 1) {
+	if (node_height >= height - 1)
+	{
 		if (node->right != NULL)
 			return (node->right);
 		else
