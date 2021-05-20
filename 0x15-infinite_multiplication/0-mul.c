@@ -122,15 +122,15 @@ size_t _strlen(char *str)
  *
  * Return: pointer to allocated space
  */
-void *_calloc(size_t nmemb, size_t size)
+void *_calloc(size_t nmem, size_t size)
 {
-	char *buf = malloc(nmemb * size);
+	char *buf = malloc(nmem * size);
 	size_t i;
 
 	if (buf == NULL)
 		return (NULL);
 
-	for (i = 0; i < nmemb * size; i++)
+	for (i = 0; i < nmem * size; i++)
 		buf[i] = 0;
 
 	return ((void *)buf);
