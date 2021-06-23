@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Contains the makeChange function. """
 
+
 def makeChange(coins, total):
     """ Calculates the least number of coins required to reach total. """
     curTot = 0
