@@ -11,6 +11,9 @@ void radix_sort(int *array, size_t size)
 	int j, k, digits = 0, div = 1, pass;
 	size_t i;
 
+	if (array == NULL)
+		return;
+
 	pass = max(array, size);
 	while (pass > 0)
 	{
