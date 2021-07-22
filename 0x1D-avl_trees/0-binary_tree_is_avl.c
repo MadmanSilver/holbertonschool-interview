@@ -42,8 +42,9 @@ int bst(const binary_tree_t *tree, int min, int max)
 {
 	if (tree && (!tree->right || (tree->right->n > tree->n &&
 	    (tree->right->n < max || tree->right->n == INT_MAX) &&
-	    bst(tree->right, tree->n, max))) && (!tree->left  || (tree->left->n < tree->n &&
-	    (tree->left->n > min || tree->left->n == INT_MIN) && bst(tree->left, min, tree->n))))
+	    bst(tree->right, tree->n, max))) && (!tree->left  ||
+	    (tree->left->n < tree->n && (tree->left->n > min ||
+	    tree->left->n == INT_MIN) && bst(tree->left, min, tree->n))))
 		return (1);
 
 	return (0);
